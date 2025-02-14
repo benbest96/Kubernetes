@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myprofile
+spec:
+  selector:
+    matchLabels:
+      app: myprofile
+  template:
+    metadata:
+      labels:
+        app: myprofile
+    spec:
+      containers:
+      - name: myprofile
+        image: <Image>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

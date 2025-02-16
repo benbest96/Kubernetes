@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rsapp
+  labels:
+    app: webapp
+    key: myweb
+spec:
+  replicas: 9
+  selector:
+    matchLabels:
+      key: myweb
+  template:
+    metadata:
+      labels:
+        key: myweb
+    spec:
+      containers:
+        - name: webapp
+          image: masterb3/php-app

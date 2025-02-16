@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: masterwebapp
+spec:
+  replicas : 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: masterwebapp
+  template:
+    metadata:
+      labels:
+        app: masterwebapp
+    spec:
+      containers:
+      - name: masterwebapp
+        image: masterb3/website:1.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

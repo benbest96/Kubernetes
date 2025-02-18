@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myprofile-green
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: myprofile
+      release: v2
+  template:
+    metadata:
+      labels:
+        app: myprofile
+        release: v2
+    spec:
+      containers:
+      - name: myprofile
+        image: masterb3/website:1.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

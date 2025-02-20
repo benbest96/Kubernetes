@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myprofilev1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myprofile
+      release: v1
+  template:
+    metadata:
+      labels:
+        app: myprofile
+        release: v1
+    spec:
+      containers:
+      - name: myprofile
+        image: masterb3/website:1.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myprofilev2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myprofile
+      release: v2
+  template:
+    metadata:
+      labels:
+        app: myprofile
+        release: v2
+    spec:
+      containers:
+      - name: myprofile
+        image: masterb3/php-app
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

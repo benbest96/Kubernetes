@@ -1,0 +1,8 @@
+---
+roles:
+  - name: masterb3.swap
+  - name: masterb3.docker
+  - name: masterb3.kubernetes
+
+collections:
+  - name: community.kubernetes
